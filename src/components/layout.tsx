@@ -3,7 +3,7 @@ import React, { ReactNode } from "react"
 import styled from "styled-components"
 
 import { rhythm, styledScale } from "../utils/typography"
-import { BlogLink } from "./BlogLink"
+import { BlogLink } from "./blog-link"
 
 interface Props extends PageRendererProps {
   title: string

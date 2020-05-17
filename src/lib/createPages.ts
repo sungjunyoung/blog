@@ -48,7 +48,7 @@ export const createPages: GatsbyCreatePages = async ({
 
     createPage({
       path: post.node.fields.slug,
-      component: path.resolve(`./src/templates/BlogPost.tsx`),
+      component: path.resolve(`./src/templates/blog-post.tsx`),
       context: {
         next,
         previous,

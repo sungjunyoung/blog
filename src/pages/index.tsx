@@ -2,10 +2,10 @@ import { graphql, PageRendererProps, useStaticQuery } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 
-import { Bio } from "../components/Bio"
-import { Layout } from "../components/Layout"
-import { BlogLink } from "../components/BlogLink"
-import { SEO } from "../components/Seo"
+import { Bio } from "../components/bio"
+import { Layout } from "../components/layout"
+import { BlogLink } from "../components/blog-link"
+import { SEO } from "../components/seo"
 import { MarkdownRemark } from "../graphql-types"
 import { rhythm } from "../utils/typography"
 
@@ -19,7 +19,7 @@ const Title = styled.h3`
 
 type Props = PageRendererProps
 
-const BlogIndex = (props: Props) => {
+const Index = (props: Props) => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -80,4 +80,4 @@ const BlogIndex = (props: Props) => {
   )
 }
 
-export default BlogIndex
+export default Index
