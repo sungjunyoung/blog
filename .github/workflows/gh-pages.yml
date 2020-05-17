@@ -13,8 +13,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 10.x
+    - name: Install gatsby-cli
+      run: npm install -g gatsby-cli
     - name: Install yarn
       run: npm install -g yarn
     - name: deploy to gh-pages
-      run: |
-        yarn run deploy
+      run: yarn run deploy
