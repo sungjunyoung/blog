@@ -12,6 +12,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 10.x
+      - name: Set git environments
+        run: |
+          git config --global user.email "wnsdud1861@gmail.com"
+          git config --global user.name "Junyoung, Sung"
       - name: Install gatsby-cli
         run: npm install -g gatsby-cli
       - name: Install yarn
