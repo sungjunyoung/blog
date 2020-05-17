@@ -12,7 +12,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 10.x
-  install-deps:
+  dependencies:
     - name: Install gatsby-cli
       run: npm install -g gatsby-cli
     - name: Install yarn
