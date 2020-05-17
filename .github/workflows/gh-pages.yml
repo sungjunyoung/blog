@@ -4,7 +4,7 @@ on:
     branches: [master]
 
 jobs:
-  prepare:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -12,13 +12,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 10.x
-  dependencies:
-    - name: Install gatsby-cli
-      run: npm install -g gatsby-cli
-    - name: Install yarn
-      run: npm install -g yarn
-    - name: Install dependencies
-      run: yarn
-  deploy:
-    - name: deploy to gh-pages
-      run: yarn run deploy
+      - name: Install gatsby-cli
+        run: npm install -g gatsby-cli
+      - name: Install yarn
+        run: npm install -g yarn
+      - name: Install dependencies
+        run: yarn
+      - name: deploy to gh-pages
+        run: yarn run deploy
