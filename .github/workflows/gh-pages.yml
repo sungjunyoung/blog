@@ -1,21 +1,24 @@
 name: Deploy to gh-pages
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
-  build:
+  prepare:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js 10.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 10.x
+      - uses: actions/checkout@v1
+      - name: Use Node.js 10.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+  install-deps:
     - name: Install gatsby-cli
       run: npm install -g gatsby-cli
     - name: Install yarn
       run: npm install -g yarn
+    - name: Install dependencies
+      run: yarn
+  deploy:
     - name: deploy to gh-pages
       run: yarn run deploy
