@@ -1,14 +1,15 @@
 import { graphql, PageRendererProps, useStaticQuery } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import { Bio } from "../components/bio"
-import { Layout } from "../components/layout"
-import { FadeLink } from "../components/link"
-import { SEO } from "../components/seo"
+
+import { Bio } from "../components/Bio"
+import { Layout } from "../components/Layout"
+import { BlogLink } from "../components/BlogLink"
+import { SEO } from "../components/Seo"
 import { MarkdownRemark } from "../graphql-types"
 import { rhythm } from "../utils/typography"
 
-const StyledLink = styled(FadeLink)`
+const StyledLink = styled(BlogLink)`
   box-shadow: none;
 `
 

@@ -1,8 +1,9 @@
 import { PageRendererProps } from "gatsby"
 import React, { ReactNode } from "react"
 import styled from "styled-components"
+
 import { rhythm, styledScale } from "../utils/typography"
-import { FadeLink } from "./link"
+import { BlogLink } from "./BlogLink"
 
 interface Props extends PageRendererProps {
   title: string
@@ -20,7 +21,7 @@ const StyledH3 = styled.h3`
   margin-top: 0;
 `
 
-const StyledLink = styled(FadeLink)`
+const StyledLink = styled(BlogLink)`
   box-shadow: none;
   color: inherit;
   text-decoration: none;

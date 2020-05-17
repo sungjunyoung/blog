@@ -1,10 +1,11 @@
 import { graphql, PageRendererProps } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import { Bio } from "../components/bio"
-import { Layout } from "../components/layout"
-import { FadeLink } from "../components/link"
-import { SEO } from "../components/seo"
+
+import { Bio } from "../components/Bio"
+import { Layout } from "../components/Layout"
+import { BlogLink } from "../components/BlogLink"
+import { SEO } from "../components/Seo"
 import { Query, SitePageContext } from "../graphql-types"
 import { rhythm, styledScale } from "../utils/typography"
 
@@ -32,7 +33,7 @@ const PostNavigator = styled.ul`
   padding: 0;
 `
 
-const BlogPostTemplate = (props: Props) => {
+const BlogPost = (props: Props) => {
   const data = props.data!
   const post = data.markdownRemark!
   const excerpt = post.excerpt!
@@ -55,16 +56,16 @@ const BlogPostTemplate = (props: Props) => {
       <PostNavigator>
         <li>
           {previous && (
-            <FadeLink to={previous.fields!.slug!} rel="prev">
+            <BlogLink to={previous.fields!.slug!} rel="prev">
               ← {previous.frontmatter!.title}
-            </FadeLink>
+            </BlogLink>
           )}
         </li>
         <li>
           {next && (
-            <FadeLink to={next.fields!.slug!} rel="next">
+            <BlogLink to={next.fields!.slug!} rel="next">
               {next.frontmatter!.title} →
-            </FadeLink>
+            </BlogLink>
           )}
         </li>
       </PostNavigator>
@@ -72,7 +73,7 @@ const BlogPostTemplate = (props: Props) => {
   )
 }
 
-export default BlogPostTemplate
+export default BlogPost
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
