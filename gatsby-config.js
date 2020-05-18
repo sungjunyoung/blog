@@ -1,10 +1,9 @@
 module.exports = {
-  pathPrefix: "/deverbose",
   siteMetadata: {
-    title: `DEVerbose`,
+    title: `Records`,
     author: `Junyoung, Sung`,
     description: `deverbose`,
-    siteUrl: `https://sungjunyoung.github.io/deverbose/`,
+    siteUrl: `https://sungjunyoung.github.io/`,
     social: {
       twitter: `kylemathews`,
     },

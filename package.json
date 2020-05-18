@@ -62,7 +62,7 @@
     "tslint-react": "^4.0.0",
     "typescript": "^3.4.5"
   },
-  "homepage": "https://sungjunyoung.github.io/deverbose/",
+  "homepage": "https://sungjunyoung.github.io/",
   "keywords": [
     "gatsby"
   ],
@@ -70,7 +70,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sungjunyoung/deverbose.git"
+    "url": "git+https://github.com/sungjunyoung/sungjunyoung.github.io.git"
   },
   "scripts": {
     "build": "gatsby build --prefix-paths",
