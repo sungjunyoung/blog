@@ -1,10 +1,10 @@
 module.exports = {
-  pathPrefix: "/blog",
+  pathPrefix: "/deverbose",
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
-    author: `Kyle Mathews`,
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    title: `DEVerbose`,
+    author: `Junyoung, Sung`,
+    description: `deverbose`,
+    siteUrl: `https://sungjunyoung.github.io/deverbose/`,
     social: {
       twitter: `kylemathews`,
     },
