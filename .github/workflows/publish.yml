@@ -15,12 +15,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 10.x
-      - name: Install yarn
-        run: npm install -g yarn
       - name: Install dependencies
-        run: yarn
+        run: npm install
       - name: Export project
-        run: yarn export
+        run: npm run export
       - name: Move exported contents to tmp directory
         run: |
           mkdir /tmp/export
@@ -32,7 +30,7 @@ jobs:
           git checkout gh-pages
       - name: Update contents
           rm -rf *
-          mv /tmp/export/ ./
+          mv /tmp/export/* ./
       - name: Commit files
         run: |
           git add .
