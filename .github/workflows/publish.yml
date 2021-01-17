@@ -29,6 +29,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git checkout gh-pages
       - name: Update contents
+        run: |
           rm -rf *
           mv /tmp/export/* ./
       - name: Commit files
