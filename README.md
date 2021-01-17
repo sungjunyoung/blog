@@ -1,3 +1,4 @@
 # SUNGJUNYOUNG'S BLOG
 
-![Publish to gh-pages](https://github.com/sungjunyoung/sungjunyoung.github.io/workflows/Publish%20to%20gh-pages/badge.svg)
+![publish](https://github.com/sungjunyoung/sungjunyoung.github.io/workflows/publish/badge.svg)
+![prettier](https://github.com/sungjunyoung/sungjunyoung.github.io/workflows/prettier/badge.svg)
