@@ -1,16 +1,12 @@
-const fs = require("fs");
-const fm = require("front-matter");
-const marked = require("marked");
+import markdownPosts from "../../../posts/*.md";
 
-const posts = fs.readdirSync("./src/posts").map((postFilename) => {
-  const contents = fs.readFileSync(`./src/posts/${postFilename}`, {
-    encoding: "utf8",
-  });
-  const { body, attributes } = fm(contents);
+const posts = markdownPosts.map((markdownPost) => {
+  const { metadata, html } = markdownPost;
   return {
-    title: attributes.title,
-    slug: attributes.slug,
-    html: marked(body),
+    title: metadata.title,
+    slug: metadata.slug,
+    date: metadata.date,
+    html: html,
   };
 });
 

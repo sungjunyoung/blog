@@ -10,6 +10,8 @@ import sveltePreprocess from "svelte-preprocess";
 import typescript from "@rollup/plugin-typescript";
 import config from "sapper/config/rollup.js";
 import pkg from "./package.json";
+import markdown from "@jackfranklin/rollup-plugin-markdown";
+import glob from "rollup-plugin-glob";
 
 const mode = process.env.NODE_ENV;
 const dev = mode === "development";
@@ -27,6 +29,8 @@ export default {
     input: config.client.input().replace(/\.js$/, ".ts"),
     output: config.client.output(),
     plugins: [
+      markdown(),
+      glob(),
       replace({
         "process.browser": true,
         "process.env.NODE_ENV": JSON.stringify(mode),
@@ -87,6 +91,8 @@ export default {
     input: { server: config.server.input().server.replace(/\.js$/, ".ts") },
     output: config.server.output(),
     plugins: [
+      markdown(),
+      glob(),
       replace({
         "process.browser": false,
         "process.env.NODE_ENV": JSON.stringify(mode),
@@ -114,7 +120,6 @@ export default {
     external: Object.keys(pkg.dependencies).concat(
       require("module").builtinModules
     ),
-
     preserveEntrySignatures: "strict",
     onwarn,
   },
