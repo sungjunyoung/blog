@@ -8,7 +8,7 @@ paginate = 5
   defaultTheme = "dark"
   showMenuItems = 2
   toc = true
-  rssFullText = true
+  rssFullText = false
 
 [languages]
   [languages.en]
