@@ -1,7 +1,7 @@
 # SUNGJUNYOUNG.GITHUB.IO
 
 ## TODOS
-- [ ] Deployment
+- [X] Deployment
 - [ ] Theme customization
 - [ ] Google analysis
 - [ ] About / Showcase
