@@ -2,7 +2,7 @@
 
 ## TODOS
 - [X] Deployment
-- [ ] Comment feature
+- [X] Comment feature
 - [ ] Theme customization
 - [ ] Google analysis
 - [ ] About / Showcase
