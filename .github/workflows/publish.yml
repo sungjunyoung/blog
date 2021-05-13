@@ -20,8 +20,7 @@ jobs:
         run: hugo --minify
       - name: Move built contents to tmp directory
         run: |
-          mkdir /tmp/public
-          mv public/* /tmp/public
+          mv public /tmp/
       - name: Checkout to gh-pages
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
