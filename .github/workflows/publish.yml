@@ -31,6 +31,7 @@ jobs:
           rm -rf *
           mv /tmp/public/* ./
       - name: Commit files
+        continue-on-error: true
         run: |
           git add .
           git commit -m "Published by github-actions[bot]" -a
