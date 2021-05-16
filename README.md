@@ -3,7 +3,6 @@
 ## TODOS
 - [X] Deployment
 - [X] Comment feature
-- [ ] Theme customization
-- [ ] Google analysis
+- [X] Google analysis
 - [ ] About / Showcase
 - [ ] First post!

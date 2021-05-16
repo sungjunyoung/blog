@@ -3,6 +3,7 @@ languageCode = "en-us"
 title = "sungjunyoung"
 theme = "hello-friend"
 paginate = 5
+googleAnalytics = "G-CMFR9WZ898"
 
 [params]
   defaultTheme = "dark"
