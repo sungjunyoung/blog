@@ -4,6 +4,8 @@ title = "sungjunyoung"
 theme = "hello-friend"
 paginate = 5
 googleAnalytics = "G-CMFR9WZ898"
+enableInlineShortcodes = true
+enableEmoji = "true"
 
 [params]
   defaultTheme = "dark"
@@ -18,7 +20,6 @@ googleAnalytics = "G-CMFR9WZ898"
     keywords = ""
     copyright = ""
     menuMore = "Show more"
-    writtenBy = "Written by"
     readMore = "More"
     readOtherPosts = "Read other posts"
     newerPosts = "Newer posts"
