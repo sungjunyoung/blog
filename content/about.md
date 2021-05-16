@@ -24,7 +24,7 @@ Toc = false
 
 ## :ant: Career
 - **2018.06 ~ / [NAVER](https://www.navercorp.com/)** : Platform / Devops Engineer  
-- **2017.12 ~ 2018.06 / [NAVER](https://www.navercorp.com/)**: Software Enginner Internship  
+- **2017.12 ~ 2018.06 / [NAVER](https://www.navercorp.com/)**: Software Engineer Internship  
 - **2016.08 ~ 2017.03 / [Nomadstar](https://nomadstar.com/)**: Server Engineer Internship  
 
 ---
