@@ -8,6 +8,8 @@ Toc = false
 
 ![Profile](/assets/img/profile.png)
 
+:heart: Golang / Kubernetes
+
 ---
 
 ## :email: Contact
