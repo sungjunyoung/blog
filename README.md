@@ -5,5 +5,5 @@
 - [X] Comment feature
 - [X] Google analysis
 - [X] Favicon
-- [ ] About / Showcase
+- [X] About
 - [ ] First post!
