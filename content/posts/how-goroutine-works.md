@@ -126,7 +126,7 @@ Runtime Scheduler 는 이 과정을 생략하고, 스레드를 `idle` 상태로 
 이렇게 스레드를 재활용하는 아이디어로, 스레드 생성/삭제에 대한 부하 없이 고루틴을 스레드에 빠르게 스케줄링 할 수 있습니다.
 
 goroutine g1 이 실행되고, 종료 후 g2 가 실행되는 과정
-1. `g1` 이 생성되고, local runq 에 추가됨
+1. `g1` 이 생성되고, local runqueue 에 추가됨
 2. 메인 스레드를 포함하여 모든 스레드가 busy 이므로, 새로운 스레드(`T1`) 를 생성하고 `g1` 을 `T1` 에 스케줄링
 3. `g1` 의 작업이 끝나고 `T1` 스레드는 종료되지 않고 idle 상태로 보관됨 
 4. 새로운 goroutine `g2` 가 생성되고, idle 상태의 스레드 `T1` 을 재활용하여 실행
@@ -147,9 +147,13 @@ goroutine g1 이 실행되고, 종료 후 g2 가 실행되는 과정
 실행 가능한 goroutine 을 대기시킴으로서 적절하게 프로세싱 파워를 사용할 수 있습니다. 
 
 이 `특정 조건`은 어떻게 결정하는게 좋을까요? 
-Go 에서는 이 조건을 CPU 코어의 갯수로 (default) 제한합니다.
+Go 에서는 이 조건을 CPU 코어의 갯수로 제한합니다.
 생성되는 스레드를 CPU 코어 갯수만큼만 생성하도록 하는 것이죠.
 이렇게 모든 CPU 코어가 스레드를 실행하게 함으로서 적정 수준의 Parallelism 을 달성할 수 있게 됩니다.
+
+이 갯수는 디폴트 값으로 CPU 코어 갯수로 지정되지만, 
+`rumtime.GOMAXPROCS` 로 설정이 가능합니다. 
+이 설정은 하나의 노드에서 여러 Go 프로그램을 실행시킬 때 좀 더 좋은 성능을 위해 조절하기도 합니다.
 
 {{< figure src="/assets/posts/how-goroutine-works/limit-thread.png" title="reuse-thread" caption="[그림-4] 커널 스레드 갯수 제한 (CPU 코어 = 2)" >}}
 
@@ -157,7 +161,7 @@ Go 에서는 이 조건을 CPU 코어의 갯수로 (default) 제한합니다.
 모든 스레드가 busy 상태이면 CPU 코어 갯수 (2개) 이상으로 스레드를 생성하지 않고 대기합니다.
 이후 메인 스레드에서 다른 goroutine 의 데이터를 받기 위해 `<-ch` 로 블록되는 시점에 g2 가 메인 스레드에서 동작하게 됩니다.
 
-또한 이 Limit 은 goroutine 을 실항하고 있는 스레드로 제한됩니다.
+또한 이 Limit 은 goroutine 을 실행하고 있는 스레드로 제한됩니다.
 System Call 에서 사용되는 스레드는 이 조건에 포함되지 않습니다. 
 이 조건은 잠시 후 알아보도록 하겠습니다.
 
@@ -178,11 +182,11 @@ runqueue 는 Heap 영역에 있는 공동의 리소스이고,
 
 그럼 위에서 살펴보았던 과정을 local runqueue 를 추가하여 다시 한번 시뮬레이션 해봅시다.
 
-1. g1 스레드가 생성되어 runq A 에 추가됨
+1. g1 goroutine 이 생성되어 runq A 에 추가됨
 2. 모두 busy 스레드이기 때문에 새로운 스레드 T1 생성
 3. T1 이 g1 을 실행하려 하지만, runq B 에는 goroutine 이 없는 상태 
 
-{{< figure src="/assets/posts/how-goroutine-works/local-runqueue-1.gif" title="local-runqueue" caption="[그림-5] 스레드별 local runqueue 상황에서의 스케줄링" >}}
+{{< figure src="/assets/posts/how-goroutine-works/local-runqueue-1.gif" title="local-runqueue-1" caption="[그림-5] 스레드별 local runqueue 상황에서의 스케줄링" >}}
 
 보시다시피, runq B 에는 할당된 goroutine 이 없기 때문에 실행시킬 goroutine 이 없습니다. 
 어떻게 해야 할까요? 
@@ -208,7 +212,78 @@ func stealWork(now int64) (gp *g, inheritTime bool, rnow, pollUntil int64, newWo
 ```
 
 위 코드에서 work stealing 을 확인할 수 있습니다. 
-이렇게 다른 runqueue 의 작업을 훔쳐옴으로서 작업이 골고루 분배될 수 있습니다. 
+
+{{< figure src="/assets/posts/how-goroutine-works/local-runqueue-2.gif" title="local-runqueue-2" caption="[그림-6] Work Stealing" >}}
+
+`[그림-5]` 의 과정을 다시 살펴보면, 위와 같이 다른 runqueue 의 작업을 훔쳐와 T1 스레드에서 동작시키는 것을 볼 수 있습니다.
+이렇게 다른 runqueue 의 작업의 절반을 가져옴으로서 전체적으로 작업도 골고루 분배될 수 있습니다. 
+
+## Blocking System call
+
+다음과 같이 goroutine 을 사용한다고 가정해 봅시다.
+
+```go
+func process(image) { // g1
+    // goroutine 생성 
+    go reportMetrics() // g3
+
+    complicatedAlgorithm(image)
+    
+    // 파일 Write
+    f, err := os.OpenFile() // goroutine & thread block
+    ...
+}
+```
+
+`g1` 이 `g3` 를 생성하고, I/O 작업 (Blocking system call) 을 수행합니다. 
+지금까지 내용을 바탕으로 유추해 보면, CPU 코어 갯수가 2개인 환경에서, 
+위와 같은 상황에서는 `main` goroutine 와 `g1` goroutine 이 
+각각 스레드를 사용하고 있으므로, `g3` 는 아직 실행되지 못하고 대기할 것입니다. 
+그리고 `g1` 은 `os.OpenFile()` 함수를 사용해 I/O 작업을 수행합니다. 
+Blocking system call 을 수행하게 되면, 응답이 올때까지 스레드는 Blocking 됩니다. 
+따라서 `g3` goroutine 은 system call 이 완료될 때까지 대기하게 되죠.
+
+이런 상황에서 Runtime Scheduler 는 어떻게 이 문제를 해결할까요?
+
+### Hand off
+
+Runtime Scheduler 는 Background 모니터 스레드를 통해 일정 시간 블로킹 된 스레드를 감지합니다. 
+블로킹 스레드가 감지되고, idle 스레드가 없으면, 모니터는 스레드를 새로 만듭니다.
+
+> 위에서 스레드 Limit 은 goroutine 을 실행하고 있는 스레드로 제한된다고 하였지만, 
+> System call 에서 사용되는 스레드는 이 조건에 포함되지 않는다고 하였습니다. 
+> 때문에 Blocking system call 을 수행하는 스레드는 이 Limit 에 포함되지 않습니다.
+
+이렇게 새로 만들어진 스레드의 runqueue 에, 기존에 쌓여있던 goroutine 작업들을 `handoff` 해줍니다.
+
+{{< figure src="/assets/posts/how-goroutine-works/runqueue-handoff.png" title="runqueue-handoff" caption="[그림-7] Runqueue Handoff" >}}
+
+`handoff` 를 통해서 goroutine 의 starvation 을 방지할 수 있습니다.
+
+## 정리
+
+Go 의 Runtime Scheduler 는 여러 아이디어를 바탕으로 경량화된 스레드를 최적화하여 스케줄링 할 수 있는 방법들을 고안해 내었습니다.
+
+- 스레드의 재사용
+- Goroutine 이 동작하는 스레드 갯수의 제한 (GOMAXPROCS)
+- 분산된 runqueue
+- work stealing, handoff
+
+runqueue 가 Linux 스케줄러처럼 priority 를 제공하지 못하는 문제, 실제 system topology 를 반영하지 못하는 문제 등 
+아직 해결해야할 문제들이 많습니다. 
+하지만 goroutine 과 runtime scheduler 에 구현된 개념들이 강력한 아이디어인 것은 틀림없는 것 같습니다.
+
+`Kavya Joshi` 의 발표는 정말 쉽고 재밌게, 그리고 꼬리에 꼬리를 무는 문제점들과 그 해결법을 바탕으로 진행되어 흥미진진하게 들을 수 있어 
+공부하는데 도움이 많이 되는것 같습니다. 다른 발표들도 흥미로우니 한번쯤 들어보면 좋을것 같습니다.
+- [Understanding Channels](https://www.youtube.com/watch?v=KBZlN0izeiY&t=11s)
+- [Let's talk locks!](https://www.youtube.com/watch?v=tjpncm3xTTc)
+
+이 포스트에서 언급된 내용 이외에도, 
+- sysmon 의 long running goroutine 감지 및 unschedule
+- global runqueue
+
+에 대한 내용이 [발표](https://youtu.be/YHRO5WQGh0k) 뒷부분에 있습니다.
 
 ---
-WIP
+
+Go 의 장점에서 왜 항상 강력한 동시성이 빠짐없이 등장하는지 아주 깊지는 않지만 조금은 이해가 되는 발표였습니다.
