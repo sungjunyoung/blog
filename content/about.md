@@ -5,9 +5,6 @@ author = "Junyoung, Sung"
 Toc = false
 +++
 
-![Waving](https://capsule-render.vercel.app/api?type=waving&height=200&text=sungjunyoung&fontAlign=70&fontAlignY=40&color=gradient)
-
-
 ![Profile](/assets/img/profile.png)
 
 :heart: Golang / Kubernetes
@@ -33,6 +30,16 @@ Toc = false
 
 ---
 
+## :tv: Presentations
+- **2021.10.21 / Ceph Korea Community**
+    - [Journey for Provisioning 20k over Rbd Volumes to Kubernetes with Openstack](https://www.slideshare.net/SungJunyoung/journey-for-provisioning-20k-over-rbd-volumes-to-kubernetes-with-openstack)
+- **2017.02.24 / 6th D2 Campus Seminar**
+    - [From Term Project to Product](https://www.slideshare.net/deview/ss-72527503)
+- **2016.11.21 / KHU Softcon**
+    - [Intern's Amazon Web Services Server Migration Story Who Didn't Even Know What the Server Is](https://www.slideshare.net/SungJunyoung/ss-69345868)
+
+---
+
 ## :tada: Awards
 - **2017.12.31 / SW Maestro 8th** :  Authenticator
     - Font generating service based on deep-learning - Fontto
@@ -42,7 +49,7 @@ Toc = false
     - Machine Learning-based lost child finding service
     - python, data crawling
 
-- **2017.09.15 / Opensource hackerthon, OpenHack** : Minister of Science and ICT Award**
+- **2017.09.15 / Opensource hackerthon, OpenHack** : Minister of Science and ICT Award
     - URL sharing service only for developers [Forkrain](https://www.slideshare.net/SungJunyoung/forkrain-ppt)
     - nodejs, express, github sdk
 
@@ -58,6 +65,6 @@ Toc = false
     - WebRTC android communication application
     - android, webrtc
 
-- **2013.12.15 / Born to global Hackathon** : Special Award**
+- **2013.12.15 / Born to global Hackathon** : Special Award
     - Interest-based user connection facebook chatbot service
     - python, facebook sdk
