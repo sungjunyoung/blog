@@ -1,7 +1,7 @@
 ---
 title: "Goroutine 은 어떻게 동작할까?"
 date: 2021-05-17T00:45:48+09:00
-draft: true
+draft: false
 tags: [golang]
 ---
 

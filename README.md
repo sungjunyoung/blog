@@ -6,4 +6,4 @@
 - [X] Google analysis
 - [X] Favicon
 - [X] About
-- [ ] First post!
+- [X] First post!
