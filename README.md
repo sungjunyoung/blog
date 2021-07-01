@@ -1,9 +1,6 @@
 # SUNGJUNYOUNG.GITHUB.IO
 
-## TODOS
-- [X] Deployment
-- [X] Comment feature
-- [X] Google analysis
-- [X] Favicon
-- [X] About
-- [X] First post!
+## DEVELOP
+```
+$ hugo serve --buildDrafts --disableFastRender
+```
