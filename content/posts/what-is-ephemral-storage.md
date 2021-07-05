@@ -391,7 +391,7 @@ spec:
 다음은 container ephemeral storage limit 스펙에 따른 eviction 을 테스트 해보기 위해서 위와 같은 스펙으로 Pod 을 띄워 보겠습니다. 
 컨테이너 스펙으로 각각 `ephemeral-storage` 제한을 `500Mi` 로 설정하고, 두개의 컨테이너를 띄웁니다.  
 
-이렇게 되면 각각의 컨테이너의 리소스 제한은 1Gi 가 되고, Pod Ephemeral Storage 제한은 두 컨테이너 (nginx, app) 제한의 합인 1Gi 가 됩니다. 
+이렇게 되면 각각의 컨테이너의 리소스 제한은 500Mi 가 되고, Pod Ephemeral Storage 제한은 두 컨테이너 (nginx, app) 제한의 합인 1Gi 가 됩니다. 
 이 중 한 컨테이너에 접근해서 1.5GB 파일을 Write 해봅니다.
 
 ```bash
@@ -416,7 +416,7 @@ command terminated with exit code 137
 Warning  Evicted    15s   kubelet, xxxxxx  Container nginx exceeded its local ephemeral storage limit "500Mi".
 ```
 
-Pod 이 Evict 되었고, describe 시 container ephemeral storage limit 에러로 Evict 되었습니다. 
+pod describe 를 통해 확인해보면, container ephemeral storage limit 에러로 Evict 되었다는 것을 확인할 수 있습니다. 
 컨테이너 Ephemeral Storage 제한인 500Mi 에 걸려 Evict 되었다는 것을 알 수 있네요.
 
 ### pod ephemeral storage limit eviction
@@ -490,7 +490,7 @@ $ k exec -it pod-ephemeral-storage-eviction -c nginx bash
 500000000 bytes (500 MB) copied, 0.262356 s, 1.9 GB/s
 ```
 
-1.5GB 파일을 `/emptydir` 경로에 Write 시 Pod Evict 가 일어나지 않습니다. 
+1.5GB 파일을 `/emptydir` 경로에 Write 시 Pod Evict 가 일어나지 않았습니다. Pod Limit 제한이 2Gi 이기 때문이죠. 
 이제 500MB 파일을 두개 더 생성하여 emptydir 사용량이 2.5GB 가 되도록 해보겠습니다.
 
 ```bash
