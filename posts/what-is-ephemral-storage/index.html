@@ -225,7 +225,7 @@ Pod 스펙에는 <code>initContainers</code> 라는 초기화 컨테이너 스�
 <span style=color:#ae81ff>500000000</span> bytes <span style=color:#f92672>(</span><span style=color:#ae81ff>500</span> MB<span style=color:#f92672>)</span> copied, 0.280843 s, 1.8 GB/s
 command terminated with exit code <span style=color:#ae81ff>137</span>
 </code></pre></div><pre><code>Warning  Evicted    15s   kubelet, xxxxxx  Container nginx exceeded its local ephemeral storage limit &quot;500Mi&quot;.
-</code></pre><p>Pod 이 Evict 되었고, describe 시 container ephemeral storage limit 에러로 Evict 되었습니다.
+</code></pre><p>pod describe 를 통해 확인해보면, container ephemeral storage limit 에러로 Evict 되었다는 것을 확인할 수 있습니다.
 컨테이너 Ephemeral Storage 제한인 500Mi 에 걸려 Evict 되었다는 것을 알 수 있네요.</p><h3 id=pod-ephemeral-storage-limit-eviction>pod ephemeral storage limit eviction</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
 <span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Pod</span>
 <span style=color:#f92672>metadata</span>:
@@ -278,7 +278,7 @@ pod limit 사용량에는 default type emptydir 사용량이 합산되므로, em
 500+0 records in
 500+0 records out
 <span style=color:#ae81ff>500000000</span> bytes <span style=color:#f92672>(</span><span style=color:#ae81ff>500</span> MB<span style=color:#f92672>)</span> copied, 0.262356 s, 1.9 GB/s
-</code></pre></div><p>1.5GB 파일을 <code>/emptydir</code> 경로에 Write 시 Pod Evict 가 일어나지 않습니다.
+</code></pre></div><p>1.5GB 파일을 <code>/emptydir</code> 경로에 Write 시 Pod Evict 가 일어나지 않았습니다. Pod Limit 제한이 2Gi 이기 때문이죠.
 이제 500MB 파일을 두개 더 생성하여 emptydir 사용량이 2.5GB 가 되도록 해보겠습니다.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#f92672>[</span>root@pod-ephemeral-storage-eviction emptydir<span style=color:#f92672>]</span><span style=color:#75715e># for i in {4..5}; do echo $i; dd if=/dev/zero of=$i bs=1MB count=500; sleep 20; done</span>
 <span style=color:#ae81ff>4</span>
 500+0 records in
