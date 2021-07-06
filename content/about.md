@@ -61,7 +61,7 @@ Toc = false
     - [Huestagram](https://www.slideshare.net/SungJunyoung/ss-63682747)
     - swift, ios, instagram sdk, hue sdk
 
-- **2016.03.26 / SKT App Jam** : Encouragement Award**
+- **2016.03.26 / SKT App Jam** : Encouragement Award
     - WebRTC android communication application
     - android, webrtc
 
