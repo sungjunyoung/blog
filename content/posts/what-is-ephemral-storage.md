@@ -9,7 +9,7 @@ tags: [kubernetes]
 Kubernetes 는 실행 중인 컨테이너에서 사용할 리소스의 양을 지정할 수 있는 기능을 지원합니다.  
 리소스는 Pod 스펙 중 `spec.containers[].resources.reequests` 혹은 `spec.containers[].resources.limits` 로 지정이 가능합니다.
 
-컨테이너에 대한 리소스 요청 (request) 을 지정하면 스케줄러가 이 리소를 보고 해당 Pod 이 배치될 노드를 결정하며, 
+컨테이너에 대한 리소스 요청 (request) 을 지정하면 스케줄러가 이 리소스를 보고 해당 Pod 이 배치될 노드를 결정하며, 
 컨테이너에 대한 리소스 제한 (limit) 을 지정하면 실행 중인 컨테이너가 이 제한보다 많은 리소스를 사용할 수 없도록 제한하게 됩니다.
 이 리소스 제한을 넘어가게 되면, Pod 이 Evict 되고 다른 노드로 넘어가는 등 운영 중에 생각지 못한 일이 발생할 수 있습니다. 
 
