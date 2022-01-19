@@ -12,7 +12,7 @@ Toc = false
 ---
 
 ## :email: Contact
-- **Email** : junyoung.sung@navercorp.com
+- **Email** : junyoung.sung@naverlabs.com
 - **Facebook** : https://www.facebook.com/wnsdud1861
 
 ---
@@ -46,7 +46,7 @@ Toc = false
     - Font generating service based on deep-learning - Fontto
     - python, deep learning, meteor, react
 
-- **2017.11.04 / Digital solution Challenge** : Computer Information Society President Award**
+- **2017.11.04 / Digital solution Challenge** : Computer Information Society President Award
     - Machine Learning-based lost child finding service
     - python, data crawling
 
