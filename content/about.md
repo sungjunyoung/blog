@@ -24,7 +24,8 @@ Toc = false
 ---
 
 ## :ant: Career
-- **2021.08 ~ / [NAVER LABS](https://www.naverlabs.com/)** : Software & Devops Engineer
+- **2022.03 ~ / [Viva Republica (Toss)](https://toss.im)** : Devops Engineer
+- **2021.08 ~ 2022.03 / [NAVER LABS](https://www.naverlabs.com/)** : Software & Devops Engineer
 - **2018.06 ~ 2021.07 / [NAVER](https://www.navercorp.com/)** : Platform & Devops Engineer  
 - **2017.12 ~ 2018.06 / [NAVER](https://www.navercorp.com/)**: Platform Development Intern
 - **2016.08 ~ 2017.03 / [Nomadstar](https://nomadstar.com/)**: Server Development Intern  
