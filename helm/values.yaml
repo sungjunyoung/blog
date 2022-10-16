@@ -1,0 +1,15 @@
+namespace: live
+domain: blog.sungjunyoung.dev
+gateway: istio-system/ingress-gateway
+image:
+  repository: 153178401710.dkr.ecr.ap-northeast-2.amazonaws.com/blog
+  tag: latest
+  imagePullPolicy: Always
+replicas: 2
+resources:
+  limits:
+    cpu: 0.2
+    memory: 100Mi
+  requests:
+    cpu: 0.1
+    memory: 100Mi
