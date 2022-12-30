@@ -6,7 +6,7 @@ spec:
   host: blog.live.svc.cluster.local
   trafficPolicy:
     loadBalancer:
-      simple: LEAST_REQUEST
+      simple: LEAST_CONN
   subsets:
     - name: v1
       labels:

@@ -6,6 +6,7 @@ paginate = 5
 googleAnalytics = "G-CMFR9WZ898"
 enableInlineShortcodes = true
 enableEmoji = "true"
+enableRobotsTXT = true
 
 [params]
   defaultTheme = "dark"
