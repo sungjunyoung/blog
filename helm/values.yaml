@@ -2,7 +2,7 @@ namespace: live
 domain: blog.sungjunyoung.dev
 gateway: istio-system/ingress-gateway
 image:
-  repository: 153178401710.dkr.ecr.ap-northeast-2.amazonaws.com/blog
+  repository: public.ecr.aws/b0k0p6t5/blog
   tag: latest
   imagePullPolicy: Always
 replicas: 2
