@@ -8,8 +8,8 @@ hugo serve --buildDrafts --disableFastRender
 
 ## DEPLOY
 ```bash
-docker build --platform=linux/amd64 -t 153178401710.dkr.ecr.ap-northeast-2.amazonaws.com/blog:latest .           
-docker push 153178401710.dkr.ecr.ap-northeast-2.amazonaws.com/blog:latest
+docker build --platform=linux/amd64 -t public.ecr.aws/b0k0p6t5/blog:latest .           
+docker push public.ecr.aws/b0k0p6t5/blog:latest
  
 helm upgrade blog ./helm -n live
 ```
