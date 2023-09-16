@@ -24,15 +24,17 @@ Toc = false
 ---
 
 ## :ant: Career
-- **2022.03 ~ / [Viva Republica (Toss)](https://toss.im)** : Devops Engineer
-- **2021.08 ~ 2022.03 / [NAVER LABS](https://www.naverlabs.com/)** : Software & Devops Engineer
-- **2018.06 ~ 2021.07 / [NAVER](https://www.navercorp.com/)** : Platform & Devops Engineer  
+- **2022.03 ~ / [Viva Republica (Toss)](https://toss.im)** : DevOps Engineer
+- **2021.08 ~ 2022.03 / [NAVER LABS](https://www.naverlabs.com/)** : Software & DevOps Engineer
+- **2018.06 ~ 2021.07 / [NAVER](https://www.navercorp.com/)** : Platform & DevOps Engineer  
 - **2017.12 ~ 2018.06 / [NAVER](https://www.navercorp.com/)**: Platform Development Intern
 - **2016.08 ~ 2017.03 / [Nomadstar](https://nomadstar.com/)**: Server Development Intern  
 
 ---
 
 ## :tv: Presentations
+- **2023.06.08 / SLASH 23**
+    - [고객 불안을 0으로 만드는 토스의 Istio Zero Trust](https://youtu.be/4sJd6PIkP_s?t=1)
 - **2021.10.21 / Ceph Korea Community**
     - [Journey for Provisioning 20k over Rbd Volumes to Kubernetes with Openstack](https://www.slideshare.net/SungJunyoung/journey-for-provisioning-20k-over-rbd-volumes-to-kubernetes-with-openstack)
 - **2017.02.24 / 6th D2 Campus Seminar**
