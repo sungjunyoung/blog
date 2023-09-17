@@ -1,6 +1,8 @@
 namespace: live
 domain: blog.sungjunyoung.dev
-gateway: istio-system/ingress-gateway
+gateways:
+  - istio-system/ingress-gateway
+  - mesh
 image:
   repository: public.ecr.aws/b0k0p6t5/blog
   tag: latest

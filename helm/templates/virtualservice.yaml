@@ -3,8 +3,7 @@ kind: VirtualService
 metadata:
   name: blog
 spec:
-  gateways:
-    - {{ .Values.gateway }}
+  gateways: {{ .Values.gateways | toYaml | nindent 4 }}
   hosts:
     - {{ .Values.domain }}
   http:
