@@ -8,15 +8,12 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
-      - name: Build in arm64 container
-        uses: uraimo/run-on-arch-action@v2.1.1
-        with:
-          arch: aarch64
-          distro: ubuntu20.04
-          run: |
-            docker build --platform=linux/aarch64 -t docker.sungjunyoung.dev/blog:latest .
-            docker push docker.sungjunyoung.dev/blog:latest
+      - name: Build and push
+        run: |
+          docker build --platform=linux/arm64 -t docker.sungjunyoung.dev/blog:latest .
+          docker push docker.sungjunyoung.dev/blog:latest
       - uses: actions-hub/kubectl@master
+        name: Rollout deployment
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
