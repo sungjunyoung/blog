@@ -13,9 +13,9 @@ jobs:
         with:
           arch: aarch64
           distro: ubuntu20.04
-        run: |
-          docker build --platform=linux/aarch64 -t docker.sungjunyoung.dev/blog:latest .
-          docker push docker.sungjunyoung.dev/blog:latest
+          run: |
+            docker build --platform=linux/aarch64 -t docker.sungjunyoung.dev/blog:latest .
+            docker push docker.sungjunyoung.dev/blog:latest
       - uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
