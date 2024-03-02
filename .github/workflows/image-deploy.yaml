@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Docker build & push to dev
         run: |
-          docker build --platform=linux/aarch64 -t docker.sungjunyoung.dev/blog:latest .
+          docker buildx build --platform=linux/aarch64 -t docker.sungjunyoung.dev/blog:latest .
           docker push docker.sungjunyoung.dev/blog:latest
       - uses: actions-hub/kubectl@master
         env:
