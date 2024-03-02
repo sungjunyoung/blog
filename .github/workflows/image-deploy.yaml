@@ -10,11 +10,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build and push
         run: |
-          docker build --platform=linux/arm64 -t docker.sungjunyoung.dev/blog:v1.0 .
-          docker push docker.sungjunyoung.dev/blog:v1.0
+          docker build --platform=linux/arm64 -t docker.sungjunyoung.dev/blog:latest .
+          docker push docker.sungjunyoung.dev/blog:latest
       - uses: actions-hub/kubectl@master
         name: Rollout deployment
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
-          args: set image -n live deployment/blog blog=docker.sungjunyoung.dev/blog:v1.0
+          args: set image -n live deployment/blog blog=docker.sungjunyoung.dev/blog:latest

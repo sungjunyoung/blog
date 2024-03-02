@@ -1,10 +1,7 @@
-FROM alpine:3.18 as builder
-
-RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community hugo
+FROM klakegg/hugo:alpine as builder
 
 WORKDIR /sungjunyoung.github.io
 ADD . /sungjunyoung.github.io
-
 RUN hugo --minify
 
 FROM nginx:1.14.2
