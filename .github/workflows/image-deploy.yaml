@@ -10,10 +10,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Docker build & push to dev
         run: |
-          docker run -v $(pwd):/src klakegg/hugo:alpine --minify
-
-          docker buildx build --platform=linux/aarch64 -t docker.sungjunyoung.dev/blog:latest .
-          docker push docker.sungjunyoung.dev/blog:latest
+#          TODO
+#          docker build --platform=linux/aarch64 -t docker.sungjunyoung.dev/blog:latest .
+#          docker push docker.sungjunyoung.dev/blog:latest
       - uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
