@@ -4,7 +4,7 @@ gateways:
   - istio-system/ingress-gateway
   - mesh
 image:
-  repository: public.ecr.aws/b0k0p6t5/blog
+  repository: docker.sungjunyoung.dev/blog
   tag: latest
   imagePullPolicy: Always
 replicas: 2

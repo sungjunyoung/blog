@@ -4,18 +4,14 @@ on:
     branches:
       - master
 jobs:
-  build-and-push-image:
+  build-and-deploy:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - name: Docker build & push to dev
-        if: contains(github.ref, 'develop')
         run: |
           docker build --platform=linux/aarch64 -t docker.sungjunyoung.dev/blog:latest .
           docker push docker.sungjunyoung.dev/blog:latest
-  deploy:
-    runs-on: self-hosted
-    steps:
       - uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
