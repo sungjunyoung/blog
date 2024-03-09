@@ -6,7 +6,7 @@ gateways:
   - istio-system/ingress-gateway
   - mesh
 image:
-  repository: docker.sungjunyoung.dev/blog
+  repository: docker.toughcookie.app/blog
   tag: latest
   imagePullPolicy: Always
 replicas: 2

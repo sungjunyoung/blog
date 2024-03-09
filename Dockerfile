@@ -1,4 +1,4 @@
-FROM klakegg/hugo:alpine as builder
+FROM klakegg/hugo:0.107.0-ext-alpine as builder
 
 WORKDIR /sungjunyoung.github.io
 ADD . /sungjunyoung.github.io
