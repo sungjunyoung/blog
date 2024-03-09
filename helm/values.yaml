@@ -1,5 +1,7 @@
 namespace: live
-domain: blog.sungjunyoung.dev
+domains:
+  - blog.sungjunyoung.dev
+  - toughcookie.app
 gateways:
   - istio-system/ingress-gateway
   - mesh

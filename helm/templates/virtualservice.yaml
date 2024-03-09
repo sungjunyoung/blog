@@ -4,8 +4,7 @@ metadata:
   name: blog
 spec:
   gateways: {{ .Values.gateways | toYaml | nindent 4 }}
-  hosts:
-    - {{ .Values.domain }}
+  hosts: {{ .Values.domains | toYaml | nindent 4 }}
   http:
     - name: "blog"
       route:
