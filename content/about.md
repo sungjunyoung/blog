@@ -13,7 +13,6 @@ Toc = false
 
 ## :email: Contact
 - **Email** : wnsdud1861@gmail.com
-- **Facebook** : https://www.facebook.com/wnsdud1861
 
 ---
 
