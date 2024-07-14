@@ -13,12 +13,12 @@ Toc = false
 
 ## :email: Contact
 - **Email** : wnsdud1861@gmail.com
+- **LinkedIn** : https://www.linkedin.com/in/junyoung-sung-986412121/
 
 ---
 
 ## :link: Channel
 - **Github** : https://github.com/sungjunyoung  
-- **LinkedIn** : https://www.linkedin.com/in/junyoung-sung-986412121/  
 
 ---
 
